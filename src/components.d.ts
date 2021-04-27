@@ -5,9 +5,18 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { SVGAssignData } from "./interfaces/interfaces";
+import { Color, Image, SVGAssignData } from "./interfaces/interfaces";
 export namespace Components {
+    interface SvgColorer {
+        "colors": Array<Color>;
+        "images": Array<Image>;
+        "selectorType": string;
+        "skippableTags": Array<string>;
+        "svg": string;
+        "svgAssignDatas": Array<SVGAssignData<any>>;
+    }
     interface SvgRenderer {
+        "ownStyle": string;
         "selectorType": string;
         "skippableTags": Array<string>;
         "svg": string;
@@ -15,6 +24,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLSvgColorerElement extends Components.SvgColorer, HTMLStencilElement {
+    }
+    var HTMLSvgColorerElement: {
+        prototype: HTMLSvgColorerElement;
+        new (): HTMLSvgColorerElement;
+    };
     interface HTMLSvgRendererElement extends Components.SvgRenderer, HTMLStencilElement {
     }
     var HTMLSvgRendererElement: {
@@ -22,21 +37,32 @@ declare global {
         new (): HTMLSvgRendererElement;
     };
     interface HTMLElementTagNameMap {
+        "svg-colorer": HTMLSvgColorerElement;
         "svg-renderer": HTMLSvgRendererElement;
     }
 }
 declare namespace LocalJSX {
+    interface SvgColorer {
+        "colors"?: Array<Color>;
+        "images"?: Array<Image>;
+        "selectorType"?: string;
+        "skippableTags"?: Array<string>;
+        "svg"?: string;
+        "svgAssignDatas"?: Array<SVGAssignData<any>>;
+    }
     interface SvgRenderer {
         "onElementClick"?: (event: CustomEvent<SVGSVGElement>) => void;
         "onImageAddedToSvg"?: (event: CustomEvent<any>) => void;
         "onRendered"?: (event: CustomEvent<SVGSVGElement>) => void;
         "onSvgFilled"?: (event: CustomEvent<SVGSVGElement>) => void;
+        "ownStyle"?: string;
         "selectorType"?: string;
         "skippableTags"?: Array<string>;
         "svg"?: string;
         "svgAssignDatas"?: Array<SVGAssignData<any>>;
     }
     interface IntrinsicElements {
+        "svg-colorer": SvgColorer;
         "svg-renderer": SvgRenderer;
     }
 }
@@ -44,6 +70,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "svg-colorer": LocalJSX.SvgColorer & JSXBase.HTMLAttributes<HTMLSvgColorerElement>;
             "svg-renderer": LocalJSX.SvgRenderer & JSXBase.HTMLAttributes<HTMLSvgRendererElement>;
         }
     }

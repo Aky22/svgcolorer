@@ -3,7 +3,7 @@ import { SVGAssignData } from '../../interfaces/interfaces';
 
 @Component({
   tag: 'svg-renderer',
-  styleUrl: 'my-component.css',
+  styleUrl: 'svg-renderer.css',
   shadow: true,
 })
 export class SvgRenderer {
@@ -11,26 +11,10 @@ export class SvgRenderer {
   @Element() el: HTMLElement;
 
   @Prop() svg: string;
-  @Prop() svgAssignDatas: Array<SVGAssignData<any>> = [{
-    color: {
-      colorCode: '#123456',
-      colorId: 1
-    },
-    isImage: false,
-    part: {
-      selector: '#_4'
-    },
-    outputImageSize: {
-      width: 800,
-      height: 800
-    },
-    canvasSize: {
-      width: 800,
-      height: 800
-    }
-  }]
+  @Prop() svgAssignDatas: Array<SVGAssignData<any>>;
   @Prop() selectorType: string = "group";
-  @Prop() skippableTags: Array<string> = ['tűzés', 'díszítés', 'lyukasztás', 'cúg'];
+  @Prop() skippableTags: Array<string>;
+  @Prop() ownStyle: string = "";
 
   @Event() rendered: EventEmitter<SVGSVGElement>;
   @Event() imageAddedToSvg: EventEmitter<any>;
@@ -61,6 +45,7 @@ export class SvgRenderer {
     // delete fill: none rules
     style.innerHTML = style.innerHTML.split('fill: none;').join('')
     style.innerHTML = style.innerHTML.split('fill:none;').join('')
+    style.innerHTML += this.ownStyle;
     this.el.shadowRoot.querySelector('.svgStyle').innerHTML = style.innerHTML
     style.remove();
 
