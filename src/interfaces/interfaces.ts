@@ -1,6 +1,5 @@
 export interface Color {
     colorCode: string;
-    colorId: number;
   }
   
   export interface Image {

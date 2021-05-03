@@ -1,7 +1,11 @@
 {
-  "name": "svg-colorer-stencil",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "name": "svg-colorer",
+  "version": "0.0.2",
+  "description": "SVG Colorer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aky22/svgcolorer.git"
+  },
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -9,7 +13,7 @@
   "types": "dist/custom-elements/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/svg-colorer-stencil/svg-colorer-stencil.esm.js",
+  "unpkg": "dist/svg-colorer/svg-colorer.esm.js",
   "files": [
     "dist/",
     "loader/"

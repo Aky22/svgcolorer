@@ -1,4 +1,4 @@
-# my-component
+# svg-colorer
 
 
 
@@ -9,34 +9,25 @@
 
 | Property         | Attribute       | Description | Type                   | Default     |
 | ---------------- | --------------- | ----------- | ---------------------- | ----------- |
-| `ownStyle`       | `own-style`     |             | `string`               | `""`        |
+| `colors`         | --              |             | `Color[]`              | `undefined` |
+| `images`         | --              |             | `Image[]`              | `undefined` |
 | `selectorType`   | `selector-type` |             | `string`               | `"group"`   |
 | `skippableTags`  | --              |             | `string[]`             | `undefined` |
 | `svg`            | `svg`           |             | `string`               | `undefined` |
 | `svgAssignDatas` | --              |             | `SVGAssignData<any>[]` | `undefined` |
 
 
-## Events
-
-| Event             | Description | Type                         |
-| ----------------- | ----------- | ---------------------------- |
-| `elementClick`    |             | `CustomEvent<SVGSVGElement>` |
-| `imageAddedToSvg` |             | `CustomEvent<any>`           |
-| `rendered`        |             | `CustomEvent<SVGSVGElement>` |
-| `svgFilled`       |             | `CustomEvent<SVGSVGElement>` |
-
-
 ## Dependencies
 
-### Used by
+### Depends on
 
- - [svg-colorer](../svg-colorer)
+- [svg-renderer](../svg-renderer)
 
 ### Graph
 ```mermaid
 graph TD;
   svg-colorer --> svg-renderer
-  style svg-renderer fill:#f9f,stroke:#333,stroke-width:4px
+  style svg-colorer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

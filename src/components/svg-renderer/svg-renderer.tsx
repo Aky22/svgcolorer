@@ -119,7 +119,9 @@ export class SvgRenderer {
 
   private addEventListenerToElement (element: SVGSVGElement): void {
     element.addEventListener('click', () => {
-      this.elementClick.emit(element)
+      if(!this.skippableTags.includes(element.id.toLowerCase())) {
+        this.elementClick.emit(element)
+      }
     })
   }
 

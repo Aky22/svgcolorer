@@ -8,30 +8,13 @@ import { Color, SVGAssignData, Image } from '../../interfaces/interfaces';
 })
 export class SvgColorer {
 
-  @Prop() colors: Array<Color> = [{colorCode: "#FF0000", colorId: 1}, {colorCode: "#0000FF", colorId: 2}];
+  @Prop() colors: Array<Color>;
   @Prop() images: Array<Image>;
 
   @Prop() svg: string;
-  @Prop() skippableTags: Array<string> = ['tűzés', 'díszítés', 'lyukasztás', 'cúg'];
+  @Prop() skippableTags: Array<string>;
   @Prop() selectorType: string = "group";
-  @Prop() svgAssignDatas: Array<SVGAssignData<any>> = [{
-    color: {
-      colorCode: '#123456',
-      colorId: 1
-    },
-    isImage: false,
-    part: {
-      selector: '#_4'
-    },
-    outputImageSize: {
-      width: 800,
-      height: 800
-    },
-    canvasSize: {
-      width: 800,
-      height: 800
-    }
-  }]
+  @Prop() svgAssignDatas: Array<SVGAssignData<any>>;
 
   @State() selected: SVGSVGElement;
 
@@ -51,6 +34,10 @@ export class SvgColorer {
     this.selected.style.fill = e.colorCode;
   }
 
+  onImageClick(e: Image) {
+    this.selected.style.fill = e.imageName;
+  }
+
   render() {
     return (
       <div class="row">
@@ -65,11 +52,18 @@ export class SvgColorer {
         </div>
         <div class="col">
           <div class="row">
-            {this.colors.map((c) => 
-              <div key={c.colorId} class="col">
-                <div class="circle" style={{backgroundColor: c.colorCode}} onClick={() => this.onColorClick(c)}></div>
-              </div>
-            )}
+            <div class="col">
+              {this.colors.map((c, index) => 
+                  <div key={index} class="circle" style={{backgroundColor: c.colorCode}} onClick={() => this.onColorClick(c)}></div>
+              )}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {this.images.map((img, index) => {
+                <div key={index} class="circle" style={{backgroundImage: `url(${img.imageName})`}} onClick={() => this.onImageClick(img)}></div>
+              })}
+            </div>
           </div>
         </div>
       </div>
