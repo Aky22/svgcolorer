@@ -5,10 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Color, Image, SVGAssignData } from "./interfaces/interfaces";
+import { Color, Image, SVGAssignData, SVGElementWithData } from "./interfaces/interfaces";
 export namespace Components {
     interface SvgColorer {
         "colors": Array<Color>;
+        "getData": () => Promise<SVGAssignData<any>[]>;
         "images": Array<Image>;
         "selectorType": string;
         "skippableTags": Array<string>;
@@ -16,6 +17,7 @@ export namespace Components {
         "svgAssignDatas": Array<SVGAssignData<any>>;
     }
     interface SvgRenderer {
+        "getData": () => Promise<SVGAssignData<any>[]>;
         "ownStyle": string;
         "selectorType": string;
         "skippableTags": Array<string>;
@@ -51,7 +53,7 @@ declare namespace LocalJSX {
         "svgAssignDatas"?: Array<SVGAssignData<any>>;
     }
     interface SvgRenderer {
-        "onElementClick"?: (event: CustomEvent<SVGSVGElement>) => void;
+        "onElementClick"?: (event: CustomEvent<SVGElementWithData>) => void;
         "onImageAddedToSvg"?: (event: CustomEvent<any>) => void;
         "onRendered"?: (event: CustomEvent<SVGSVGElement>) => void;
         "onSvgFilled"?: (event: CustomEvent<SVGSVGElement>) => void;

@@ -1,5 +1,5 @@
-import { Component, h, Prop, State } from '@stencil/core';
-import { Color, SVGAssignData, Image } from '../../interfaces/interfaces';
+import { Component, h, Prop, State, Method } from '@stencil/core';
+import { Color, SVGAssignData, Image, SVGElementWithData } from '../../interfaces/interfaces';
 
 @Component({
   tag: 'svg-colorer',
@@ -16,26 +16,34 @@ export class SvgColorer {
   @Prop() selectorType: string = "group";
   @Prop() svgAssignDatas: Array<SVGAssignData<any>>;
 
-  @State() selected: SVGSVGElement;
+  @State() selected: SVGElementWithData;
 
-  onClicked(element: CustomEvent<SVGSVGElement>) {
+  @Method()
+  async getData() {
+    return this.svgAssignDatas;
+  }
+
+  onClicked(element: CustomEvent<SVGElementWithData>) {
     if(!this.selected) {
       this.selected = element.detail;
-      this.selected.style.strokeWidth = "2";
+      this.selected.svgsvgelement.style.strokeWidth = "2";
     }
     if(this.selected !== element.detail) {
-      this.selected.style.strokeWidth = "1";
+      this.selected.svgsvgelement.style.strokeWidth = "1";
       this.selected = element.detail;
-      this.selected.style.strokeWidth = "2";
+      this.selected.svgsvgelement.style.strokeWidth = "2";
     }
   }
 
   onColorClick(e: Color) {
-    this.selected.style.fill = e.colorCode;
+    this.selected.svgsvgelement.style.fill = e.colorCode;
+    this.selected.data.color.colorCode = e.colorCode;
   }
 
   onImageClick(e: Image) {
-    this.selected.style.fill = e.imageName;
+    this.selected.svgsvgelement.style.fill = e.imageName;
+    this.selected.data.image.imageName = e.imageName;
+    this.selected.data.image.imageId = e.imageId;
   }
 
   render() {

@@ -1,5 +1,5 @@
-import { Component, Prop, h, Event, EventEmitter, Element } from '@stencil/core';
-import { SVGAssignData } from '../../interfaces/interfaces';
+import { Component, Prop, h, Event, EventEmitter, Element, Method } from '@stencil/core';
+import { SVGAssignData, SVGElementWithData } from '../../interfaces/interfaces';
 
 @Component({
   tag: 'svg-renderer',
@@ -19,7 +19,12 @@ export class SvgRenderer {
   @Event() rendered: EventEmitter<SVGSVGElement>;
   @Event() imageAddedToSvg: EventEmitter<any>;
   @Event() svgFilled: EventEmitter<SVGSVGElement>;
-  @Event() elementClick: EventEmitter<SVGSVGElement>;
+  @Event() elementClick: EventEmitter<SVGElementWithData>;
+
+  @Method()
+  async getData() {
+    return this.svgAssignDatas;
+  }
 
   componentDidRender() {
     if (this.svgAssignDatas) {
@@ -120,7 +125,7 @@ export class SvgRenderer {
   private addEventListenerToElement (element: SVGSVGElement): void {
     element.addEventListener('click', () => {
       if(!this.skippableTags.includes(element.id.toLowerCase())) {
-        this.elementClick.emit(element)
+        this.elementClick.emit({svgsvgelement: element, data: this.svgAssignDatas.find(d => d.part.selector === element.id)})
       }
     })
   }

@@ -31,3 +31,8 @@ export interface Color {
     assignableData: Array<SVGAssignData<any>>;
     skippableSelectors: Array<string>;
   }
+
+  export interface SVGElementWithData {
+    svgsvgelement: SVGSVGElement,
+    data: SVGAssignData<any>
+  }
