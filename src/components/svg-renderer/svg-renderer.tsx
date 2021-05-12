@@ -48,13 +48,14 @@ export class SvgRenderer {
     // select style tag
     const style = this.el.shadowRoot.querySelector('svg > defs > style')
     // delete fill: none rules
-    style.innerHTML = style.innerHTML.split('fill: none;').join('')
-    style.innerHTML = style.innerHTML.split('fill:none;').join('')
+    //style.innerHTML = style.innerHTML.split('fill: none;').join('')
+    //style.innerHTML = style.innerHTML.split('fill:none;').join('')
     style.innerHTML += this.ownStyle;
     this.el.shadowRoot.querySelector('.svgStyle').innerHTML = style.innerHTML
     style.remove();
 
     elements.forEach((element: SVGSVGElement) => {
+      element.setAttribute('pointerEvent', 'visible');
       const svgAssignData = this.svgAssignDatas.find((data: SVGAssignData<any>) => {
         return data.part.selector === `#${element.id}`
       })
