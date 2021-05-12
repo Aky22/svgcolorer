@@ -17,6 +17,19 @@
 | `svgAssignDatas` | --              |             | `SVGAssignData<any>[]` | `undefined` |
 
 
+## Methods
+
+### `getData() => Promise<SVGAssignData<any>[]>`
+
+
+
+#### Returns
+
+Type: `Promise<SVGAssignData<any>[]>`
+
+
+
+
 ## Dependencies
 
 ### Depends on
