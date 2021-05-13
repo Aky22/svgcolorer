@@ -55,7 +55,7 @@ export class SvgRenderer {
     style.remove();
 
     elements.forEach((element: SVGSVGElement) => {
-      element.setAttribute('pointerEvent', 'visible');
+      element.setAttribute('pointer-events', 'visible');
       const svgAssignData = this.svgAssignDatas.find((data: SVGAssignData<any>) => {
         return data.part.selector === `#${element.id}`
       })
