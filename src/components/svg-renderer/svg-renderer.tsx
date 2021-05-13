@@ -47,7 +47,7 @@ export class SvgRenderer {
 
     // select style tag
     const style = this.el.shadowRoot.querySelector('svg > defs > style')
-    // delete fill: none rules
+    // delete -  fill: none; - rules
     style.innerHTML = style.innerHTML.split('fill: none;').join('')
     style.innerHTML = style.innerHTML.split('fill:none;').join('')
     style.innerHTML += this.ownStyle;
@@ -88,9 +88,9 @@ export class SvgRenderer {
     this.svgAssignDatas.forEach((svgAssignData: SVGAssignData<any>) => {
       if (svgAssignData.isImage) {
         hasImage = true
-        const defs = this.el.shadowRoot.querySelector('svg > defs')
-        const node = document.createElementNS('http://www.w3.org/2000/svg', 'pattern')
-        const image = document.createElementNS('http://www.w3.org/2000/svg', 'image')
+        const defs = this.el.shadowRoot.querySelector('svg > defs');
+        const node = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+        const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
         const canvas = document.createElement('canvas')
         const img = new Image(svgAssignData.outputImageSize.width, svgAssignData.outputImageSize.height)
         img.onload = () => {
@@ -108,15 +108,15 @@ export class SvgRenderer {
           node.setAttribute('width', svgAssignData.canvasSize.width.toString())
           node.setAttribute('height', svgAssignData.canvasSize.height.toString())
           node.setAttribute('patternUnits', 'userSpaceOnUse')
+          
           node.appendChild(image)
-
           defs.appendChild(node)
 
           this.imageAddedToSvg.emit()
 
           this.fillSvg()
         }
-        img.src = `/materials/${svgAssignData.image.imageName}`
+        img.src = svgAssignData.image.imageName
       }
     })
     if (!hasImage) this.fillSvg()

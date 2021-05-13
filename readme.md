@@ -3,3 +3,14 @@
 # SVG Colorer component
 
 This is a Stencil based SVG Colorer component, build for modern web frameworks.
+
+## Compile bundle
+```
+yarn build
+```
+
+## Compiles and hot-reloads for development
+```
+yarn start
+```
+

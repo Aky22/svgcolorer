@@ -18,12 +18,25 @@
 
 ## Events
 
-| Event             | Description | Type                         |
-| ----------------- | ----------- | ---------------------------- |
-| `elementClick`    |             | `CustomEvent<SVGSVGElement>` |
-| `imageAddedToSvg` |             | `CustomEvent<any>`           |
-| `rendered`        |             | `CustomEvent<SVGSVGElement>` |
-| `svgFilled`       |             | `CustomEvent<SVGSVGElement>` |
+| Event             | Description | Type                              |
+| ----------------- | ----------- | --------------------------------- |
+| `elementClick`    |             | `CustomEvent<SVGElementWithData>` |
+| `imageAddedToSvg` |             | `CustomEvent<any>`                |
+| `rendered`        |             | `CustomEvent<SVGSVGElement>`      |
+| `svgFilled`       |             | `CustomEvent<SVGSVGElement>`      |
+
+
+## Methods
+
+### `getData() => Promise<SVGAssignData<any>[]>`
+
+
+
+#### Returns
+
+Type: `Promise<SVGAssignData<any>[]>`
+
+
 
 
 ## Dependencies
